@@ -1,6 +1,5 @@
 import pytest
 from selene.support.shared import browser
-from selene import Browser, Config
 from demoqa_test.utils import attach
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
