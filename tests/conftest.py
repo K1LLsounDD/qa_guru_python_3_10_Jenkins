@@ -1,5 +1,6 @@
 import pytest
 from selene.support.shared import browser
+from selene import Browser, Config
 from demoqa_test.utils import attach
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -13,7 +14,7 @@ def browser_settings():
         "browserVersion": "100.0",
         "selenoid:options": {
             "enableVNC": True,
-            "enableVideo": False
+            "enableVideo": True
         }
     }
     options.capabilities.update(selenoid_capabilities)
@@ -30,4 +31,5 @@ def browser_settings():
     attach.add_html(browser)
     attach.add_screenshot(browser)
     attach.add_logs(browser)
+    attach.add_video(browser)
     browser.quit()
