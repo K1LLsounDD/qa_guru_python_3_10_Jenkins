@@ -1,7 +1,9 @@
 import allure
 from allure_commons.types import Severity
+from selene.support.shared import browser
 from demoqa_test.model.pages.practise_form import PractiseFormPage
 from demoqa_test.model.data.user import User
+from demoqa_test.utils import attach
 
 # browser.config.hold_browser_open = True
 practise_form = PractiseFormPage()
@@ -35,3 +37,8 @@ def test_form_registration():
 
     with allure.step('Check results'):
         practise_form.check_results(user)
+
+
+    attach.add_html(browser)
+    attach.add_screenshot(browser)
+    attach.add_logs(browser)
