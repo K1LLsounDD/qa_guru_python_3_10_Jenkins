@@ -1,3 +1,4 @@
+from selene.core import command
 from selene.support.conditions import have
 from selene.support.shared import browser
 from demoqa_test.model.data.user import User
@@ -15,8 +16,8 @@ class PractiseFormPage:
 
     def fill_registration_fields(self, user: User):
         checkbox = Checkbox(browser.all('[for^="hobbies-checkbox"]'))
-        dropdown_state = Dropdown('#state')
-        dropdown_city = Dropdown('#city')
+        dropdown_state = Dropdown(browser.element('#state'), browser.all('[id^=react-select][id*=option]'))
+        dropdown_city = Dropdown(browser.element('#city'), browser.all('[id^=react-select][id*=option]'))
         button = RadioButton('[name=gender]')
         datepiecker_month = DatePiecker('.react-datepicker__month-select')
         datepiecker_year = DatePiecker('.react-datepicker__year-select')
@@ -41,6 +42,7 @@ class PractiseFormPage:
         return self
 
     def submit(self):
+        browser.element('#submit').perform(command.js.scroll_into_view)
         browser.element('#submit').click()
         return self
 
